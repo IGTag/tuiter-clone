@@ -22,7 +22,7 @@ export default async function handler(
 
         const user = await prisma.user.findUnique({
             where:{
-                id:userId
+                id:currentUser.id
             }
         });
         
@@ -39,7 +39,7 @@ export default async function handler(
         if(req.method === 'DELETE'){
             updatedFollowingIds = 
             updatedFollowingIds.
-            filter(followingId =>  followingId !== userId)
+            filter((followingId) =>  followingId !== userId)
         }
 
         const updatedUser = await prisma.user.update({
