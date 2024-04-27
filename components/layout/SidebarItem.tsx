@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
+import {BsDot} from 'react-icons/bs'
 
 interface SidebarItemProps {
     label: string;
@@ -11,6 +12,7 @@ interface SidebarItemProps {
     icon: IconType
     onClick?:() => void;
     auth?: boolean;
+    alert?: boolean;
 }
 
 
@@ -19,7 +21,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     href,
     icon: Icon,
     onClick,
-    auth
+    auth,
+    alert
 }) =>{
     const loginModal = useLoginModal();
     const { data: currentUser} = useCurrentUser();
@@ -58,6 +61,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
              "
             >
                 <Icon size={28} color="white" />
+                {alert ? <BsDot className="text-sky-500 absolute -top-4 left-0" size={70} /> :  null}
             </div>
             <div className="
             relative
@@ -76,6 +80,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
               <p className="hidden lg:block text-white text-xl">
                  {label}
               </p>
+              {alert ? <BsDot className="text-sky-500 absolute -top-4 left-0" size={70} /> :  null}
             </div>
         </div>
     )
